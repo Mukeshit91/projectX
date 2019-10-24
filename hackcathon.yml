@@ -1,0 +1,18 @@
+kind: ReplicaSet   
+apiVersion: apps/v1  
+metadata:
+  name: myreplicaset
+spec:
+  replicas: 3    
+  selector:       
+    matchExpressions:   
+      - {key: name, operator: In, values: [projlabel]}
+  template:     
+    metadata:
+      name: projectpod
+      labels:      
+        name: projlabel
+    spec:
+      containers:
+        - name: container1
+          image: mukeshit91/newproj:2.0
